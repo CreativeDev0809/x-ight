@@ -25,8 +25,8 @@ const videoClip = new VideoClip(
   'https://player.vimeo.com/external/552481870.m3u8?s=c312c8533f97e808fccc92b0510b085c8122a875'
 )
 const videoTexture = new VideoTexture(videoClip)
-videoTexture.play()
 videoTexture.loop = true
+videoTexture.play()
 
 const videoScreen = new Entity()
 
@@ -44,7 +44,7 @@ cylinderScreen.addComponent(
   new Transform({
     scale: new Vector3(3, 2, 3),
     position: new Vector3(0, 0, 12)
-  })
+  }).rotate(Vector3.Up(), 90)
 )
 
 const videoMaterial = new Material()
