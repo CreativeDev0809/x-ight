@@ -2,13 +2,23 @@ const baseScene = new Entity()
 
 engine.addEntity(baseScene)
 
-baseScene.addComponent(new GLTFShape("models/interior.glb"))
+// baseScene.addComponent(new GLTFShape("models/interior.glb"))
 baseScene.addComponent(
   new Transform({
     position: new Vector3(2, 3.8, 2),
-    scale: new Vector3(2, 2, 2),
+    scale: new Vector3(2, 2, 2)
   })
 )
+const room2 = new Entity()
+engine.addEntity(room2)
+room2.addComponent(
+  new Transform({
+    position: new Vector3(2, 0, 2),
+    scale: new Vector3(2, 2, 2)
+  })
+)
+
+room2.addComponent(new GLTFShape("models/room2.glb"))
 
 // Video stream link from Vimeo
 const videoClip = new VideoClip(
@@ -28,6 +38,15 @@ videoScreen.addComponent(
   })
 )
 
+const cylinderScreen = new Entity()
+cylinderScreen.addComponent(new CylinderShape())
+cylinderScreen.addComponent(
+  new Transform({
+    scale: new Vector3(3, 2, 3),
+    position: new Vector3(0, 0, 12)
+  })
+)
+
 const videoMaterial = new Material()
 videoMaterial.albedoTexture = videoTexture
 videoMaterial.emissiveTexture = videoTexture
@@ -36,4 +55,9 @@ videoMaterial.emissiveIntensity = 0.6
 videoMaterial.roughness = 1.0
 videoScreen.addComponent(videoMaterial)
 
-engine.addEntity(videoScreen)
+cylinderScreen.addComponent(videoMaterial)
+
+room2.addComponent(videoMaterial)
+
+engine.addEntity(cylinderScreen)
+// engine.addEntity(videoScreen)
